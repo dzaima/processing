@@ -58,21 +58,15 @@ public class ErrorTable extends JTable {
   static final int PROBLEM_COLUMN = 1;
   static final int TAB_COLUMN = 2;
   static final int LINE_COLUMN = 3;
-
-  Font headerFont;
-  Color headerColor;
-  Color headerBgColor;
-
-//  Font rowFont;
-//  Color rowColor;
-//  Color rowBgColor;
-
-
+  
+  
+  
+  
   public ErrorTable(final Editor editor) {
     super(new DefaultTableModel(columnNames, 0));
 
     setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
+    setBackground(editor.mode.getColor("errors.bgcolor"));
     this.editor = editor;
     JTableHeader header = getTableHeader();
 
@@ -195,7 +189,6 @@ public class ErrorTable extends JTable {
     public GradyRowRenderer(Mode mode) {
       setFont(mode.getFont("errors.row.font"));
       setAlignmentX(LEFT_ALIGNMENT);
-
       textColor = mode.getColor("errors.row.fgcolor");
       bgColor = mode.getColor("errors.row.bgcolor");
       textColorSelected = mode.getColor("errors.selection.fgcolor");

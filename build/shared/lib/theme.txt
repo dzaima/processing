@@ -1,109 +1,110 @@
-# STATUS
-# Status messages (1 file added to sketch, errors, etc)
-status.notice.fgcolor = #000000
-status.notice.bgcolor = #818b95
-status.error.fgcolor = #ffffff
-status.error.bgcolor = #9E0A0A
-status.warning.bgcolor = #EF8115
-status.warning.fgcolor = #FFFFFF
-status.url.fgcolor = #cccccc
-status.font = processing.sans,plain,13
-# For the clipboard icon, needs to be a little larger on macOS
-status.emoji.font = Dialog,plain,19
-status.emoji.font.macosx = Dialog,plain,22
+# SKETCH TABS
+  header.text.font = processing.sans,bold,14
 
-# HEADER TABS
-# Settings for the tab area at the top.
-header.text.font = processing.sans,bold,14
-header.text.selected.color = #000000
-header.text.unselected.color = #ffffff
-header.tab.arrow.color = #ffffff
-header.gradient.top = #132638
-header.gradient.bottom = #122535
-header.tab.selected.color = #e0fffd
-header.tab.unselected.color = #2d4251
-header.tab.modified.color = #ef8115
+  # text color of tabs
+  header.text.selected.color = #C9C9C9
+  header.text.unselected.color = #C6C6C6
+  header.tab.arrow.color = #ffffff
 
-# FOOTER TABS
-footer.text.font = processing.sans,bold,12
-footer.text.selected.color = #e0fffd
-footer.text.unselected.color = #95adb0
-footer.tab.arrow.color = #ffffff
-footer.gradient.top = #132638
-footer.gradient.bottom = #122535
-footer.tab.selected.color = #2d4251
-footer.tab.unselected.color = #1f3241
-# updates orange #eb7f15
-footer.updates.color = #ed7f15
+  header.gradient.top = #333333
+  header.gradient.bottom = #333333
 
+  # tab colors (modified = that little bar saying unsaved)
+  header.tab.unselected.color = #444444
+  header.tab.selected.color = #555555
+  header.tab.modified.color = #B96900
+
+# FOOTER TABS (console & errors)
+  footer.text.font = processing.sans,bold,12
+  footer.text.selected.color = #D2D2D2
+  footer.text.unselected.color = #C2C2C2
+  footer.tab.arrow.color = #ffffff
+  footer.gradient.top = #212121
+  footer.gradient.bottom = #212121
+  footer.tab.selected.color = #333333
+  footer.tab.unselected.color = #222222
+  footer.updates.color = #ed7f15
+
+  
+# STATUS (code & console/error separator)
+  status.notice.bgcolor = #333333
+  status.error.bgcolor = #333333
+  status.warning.bgcolor = #333333
+  
+  status.url.fgcolor = #D2D2D2
+  status.font = processing.sans,plain,13
+  
 # CONSOLE
-# The font is handled by preferences, so its size/etc are modifiable.
-console.color = #000000
-console.output.color = #cccccc
-# text color for errors printed in the console
-console.error.color = #d9211e
+  # The font is handled by preferences, so its size/etc are modifiable.
+  console.color = #101010
+  console.output.color = #D2D2D2
+  # text color for errors printed in the console
+  console.error.color = #d9211e
 
-# TOOLBAR BUTTONS
-buttons.bgcolor = #000000
+# ERRORS
+  # background color of the tab
+  errors.bgcolor = #101010
+  
+  errors.header.font = processing.sans,plain,12
+  errors.header.bgcolor = #151515
+  errors.header.fgcolor = #D2D2D2
+  
+  errors.row.font = processing.sans,plain,12
+  # default colors
+  errors.row.bgcolor = #151515
+  errors.row.fgcolor = #D2D2D2
+  # error row colors
+  errors.selection.error.bgcolor = #151515
+  errors.indicator.error.color = #d9616e
+  # warning row colors
+  errors.selection.warning.bgcolor = #151515
+  errors.indicator.warning.color = #EF8115
+  # selected row colors (?)
+  errors.selection.bgcolor = #3f3f3f
+  errors.selection.fgcolor = #D2D2D2
 
-# for the debug and mode buttons
-#reversed.gradient.top = #10212f
-#reversed.gradient.bottom = #122637
 
-## size of divider between editing area and the console
-#divider.size = 0
-## the larger divider on windows is ugly with the little arrows
-## this makes it large enough to see (mouse changes) and use, 
-## but keeps it from being annoyingly obtrusive
-#divider.size.windows = 2
 
+buttons.bgcolor = #FF00FF
 divider.height = 9
-divider.color = #CCCCCC
+divider.color = #FF00FF
 divider.dot.diameter = 3
-divider.dot.color = #505050
+divider.dot.color = #FF00FF
 
-# TOOLBAR BUTTON TEXT
+# "Run"/"Stop" text on hover over the corresponding button
 toolbar.rollover.font = processing.sans,plain,12
-toolbar.rollover.color = #ffffff
-toolbar.gradient.top = #142a3e
-toolbar.gradient.bottom = #132638
+toolbar.rollover.color = #D2D2D2
+toolbar.gradient.top = #212121
+toolbar.gradient.bottom = #212121
 
-# MODE SELECTOR
-#mode.title.font = processing.sans,bold,15
-mode.title.font = processing.sans,plain,12
-mode.title.color = #ffffff
-# outline color of the mode button
-#mode.button.color = #ffffff
-#mode.button.gap = 13
-#mode.arrow.width
-#mode.background.color = #3D5362
-# stolen from gradient bottom
-mode.background.color = #132638
-mode.outline.color = #3a505e
+# MODE SELECTOR (java, android, ect)
+  mode.title.font = processing.sans,plain,12
+  mode.title.color = #D2D2D2
+  mode.background.color = #333333
+  mode.outline.color = #3232323
 
 
 # EDITOR - DETAILS
 
-# foreground and background colors
-editor.fgcolor = #000000
-editor.bgcolor = #ffffff
+# textfield background
+editor.bgcolor = #242424
+# default text color
+editor.fgcolor = #D2D2D2
 
-editor.gradient.top = #122535
-editor.gradient.bottom = #010305
+editor.gradient.top = #333333
+editor.gradient.bottom = #333333
 
 # highlight for the current line
-#editor.linehighlight.color=#e2e2e2
-editor.linehighlight.color=#ebfffd
-# highlight for the current line
+editor.linehighlight.color=#303030
 editor.linehighlight=true
 
-editor.caret.color = #333300
-editor.selection.color = #ffcc00
+editor.caret.color = #D2D2D2
+editor.selection.color = #004488
 
 # area that's not in use by the text (replaced with tildes)
-editor.invalid.style = #7e7e7e,bold
+editor.invalid.style = #FF00FF,bold
 
-# little pooties at the end of lines that show where they finish
+# trailing `.` on every line
 editor.eolmarkers = false
 editor.eolmarkers.color = #999999
 
@@ -111,29 +112,18 @@ editor.eolmarkers.color = #999999
 editor.brackethighlight = true
 editor.brackethighlight.color = #006699
 
-editor.gutter.text.font = processing.mono,plain,11
-#editor.gutter.text.color = #657d87
-#editor.gutter.text.color = #587478
-editor.gutter.text.color = #bbd6d5
+# LINE NUMBERS
+  editor.gutter.text.font = processing.mono,plain,11
+  editor.gutter.text.color = #AAAAAA
 
-# marker for breakpointed lines in left hand gutter (2 ascii characters)
-#editor.gutter.breakpoint.marker = <>
-#editor.gutter.breakpoint.marker.color = #4a545e
+  # bgcolor for the current (highlighted) line
+  editor.gutter.linehighlight.color=#333333
 
-# marker for the current line in left hand gutter (2 ascii characters)
-#editor.gutter.currentline.marker = ->
-#editor.gutter.currentline.marker.color = #e27500
+  # left- and right-hand gutter color
+  editor.gutter.bgcolor = #212121
 
-# bgcolor for the current (highlighted) line
-editor.gutter.linehighlight.color=#587478
-
-# left- and right-hand gutter color
-editor.gutter.bgcolor = #122535
-
-# color of vertical separation line
-#gutter.linecolor = #e9e9e9
-# space (in px) added to left and right of gutter markers
-editor.gutter.padding = 3
+  # space (in px) added to left and right of gutter markers (def 3)
+  editor.gutter.padding = 3
 
 # squiggly line underneath errors in the editor
 editor.error.underline.color = #C40E0E
@@ -143,34 +133,18 @@ editor.warning.underline.color = #ffc30e
 editor.column.error.color = #9F1613
 editor.column.warning.color = #ffc30e
 
-# not in use?
-#breakpoint.bgcolor = #f0f0f0
-#currentline.bgcolor = #ffff96
 
-errors.header.font = processing.sans,plain,12
-errors.header.bgcolor = #EBEBEB
-errors.header.fgcolor = #484848
-errors.row.font = processing.sans,plain,12
-errors.row.fgcolor = #484848
-errors.row.bgcolor = #FFFFFF
-errors.selection.fgcolor = #242424
-errors.selection.bgcolor = #E5E5E5
-errors.selection.error.bgcolor = #F5E6E6
-errors.selection.warning.bgcolor = #FDF2E7
-#errors.indicator.size = 3
-errors.indicator.error.color = #9E0A0A
-errors.indicator.warning.color = #EF8115
 
-manager.tab.selected.color = #e0fffd
-manager.tab.unselected.color = #2d4251
+manager.tab.selected.color = #444444
+manager.tab.unselected.color = #222222
 manager.tab.text.font = processing.sans,bold,14
-manager.tab.text.selected.color = #000000
-manager.tab.text.unselected.color = #ffffff
+manager.tab.text.selected.color = #D2D2D2
+manager.tab.text.unselected.color = #D2D2D2
 # orange circle for updates
 manager.tab.update.color = #ed7f15
-manager.tab.gradient.top = #132638
-manager.tab.gradient.bottom = #122535
-manager.tab.background = #132638
+manager.tab.gradient.top = #333333
+manager.tab.gradient.bottom = #333333
+manager.tab.background = #333333
 
 # tree for Examples and Sketchbook windows
 tree.font = processing.sans,plain,12

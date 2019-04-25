@@ -42,6 +42,9 @@ import processing.app.Console;
 import processing.app.Mode;
 import processing.app.Preferences;
 
+import javax.swing.plaf.basic.*;
+import java.awt.*;
+
 
 /**
  * Message console that sits below the editing area.
@@ -64,7 +67,44 @@ public class EditorConsole extends JScrollPane {
   PrintStream sketchErr;
 
   static EditorConsole current;
-
+  
+  public class DarkScrollBarUI extends BasicScrollBarUI {
+    
+    @Override
+    protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
+      Graphics2D g2g = (Graphics2D) g;
+      g2g.setColor(new Color(0xff444444));
+      g2g.fill(thumbBounds);
+      //super.paintThumb(g, c, thumbBounds);
+    }
+    
+    @Override
+    protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
+      Graphics2D g2g = (Graphics2D) g;
+      g2g.setColor(new Color(0xff292929));
+      g2g.fill(trackBounds);
+      // super.paintTrack(g, c, trackBounds);
+      // g2g.dispose();
+    }
+    protected JButton createZeroButton() {
+      JButton button = new JButton("zero button");
+      Dimension zeroDim = new Dimension(0,0);
+      button.setPreferredSize(zeroDim);
+      button.setMinimumSize(zeroDim);
+      button.setMaximumSize(zeroDim);
+      return button;
+    }
+    
+    @Override
+    protected JButton createDecreaseButton(int orientation) {
+      return createZeroButton();
+    }
+    
+    @Override
+    protected JButton createIncreaseButton(int orientation) {
+      return createZeroButton();
+    }
+  }
 
   public EditorConsole(Editor editor) {
     this.editor = editor;
@@ -84,6 +124,11 @@ public class EditorConsole extends JScrollPane {
     sketchErr = new PrintStream(new EditorConsoleStream(true));
 
     startTimer();
+    getVerticalScrollBar().setUI(new DarkScrollBarUI());
+    getHorizontalScrollBar().setUI(new DarkScrollBarUI());
+    JPanel corner = new JPanel();
+    corner.setBackground(new Color(0xff292929));
+    setCorner(JScrollPane.LOWER_RIGHT_CORNER, corner);
   }
 
 

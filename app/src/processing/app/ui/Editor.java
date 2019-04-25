@@ -40,6 +40,8 @@ import processing.app.contrib.ContributionManager;
 import processing.app.syntax.*;
 import processing.core.*;
 
+import java.awt.Graphics2D;
+import java.awt.Graphics;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -712,10 +714,21 @@ public abstract class Editor extends JFrame implements RunnerListener {
 
 
   // . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-
+  
+  public class DarkJMenuBar extends JMenuBar {
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+      super.paintComponent(g);
+      Graphics2D g2d = (Graphics2D) g;
+      g2d.setColor(new Color(0xff444444));
+      g2d.fillRect(0, 0, getWidth(), getHeight()+1);
+      
+    }
+  }
 
   protected void buildMenuBar() {
-    JMenuBar menubar = new JMenuBar();
+    JMenuBar menubar = new DarkJMenuBar();
     fileMenu = buildFileMenu();
     menubar.add(fileMenu);
     menubar.add(buildEditMenu());
