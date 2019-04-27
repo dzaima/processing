@@ -112,6 +112,7 @@ class InspectMode {
       @Override
       public void keyPressed(KeyEvent e) {
         isHotkeyDown = isHotkeyDown || keyEventHotkeyTest.test(e);
+        if (e.isControlDown() && !e.isShiftDown() && e.getKeyCode() == 'B') handleInspect();
         // Enable if hotkey was just pressed and mouse 1 is not down
         inspectModeEnabled = inspectModeEnabled || (!isMouse1Down && isHotkeyDown);
       }

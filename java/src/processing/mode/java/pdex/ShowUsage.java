@@ -15,11 +15,8 @@ import java.util.Map;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-import javax.swing.JDialog;
-import javax.swing.JMenuItem;
-import javax.swing.JScrollPane;
-import javax.swing.JTree;
-import javax.swing.WindowConstants;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
@@ -30,9 +27,7 @@ import org.eclipse.jdt.core.dom.IVariableBinding;
 import org.eclipse.jdt.core.dom.SimpleName;
 
 import processing.app.Language;
-import processing.app.ui.EditorStatus;
-import processing.app.ui.Toolkit;
-import processing.app.ui.ZoomTreeCellRenderer;
+import processing.app.ui.*;
 import processing.mode.java.JavaEditor;
 import processing.mode.java.pdex.PreprocessedSketch.SketchInterval;
 
@@ -82,9 +77,19 @@ class ShowUsage {
       window.setFocusableWindowState(false);
       Toolkit.setIcon(window);
       JScrollPane sp2 = new JScrollPane();
+      
+      sp2.setBorder(new EmptyBorder(0, 0, 0, 0));
+      sp2.getVerticalScrollBar().setUI(new DarkScrollBarUI());
+      sp2.getHorizontalScrollBar().setUI(new DarkScrollBarUI());
+      JPanel corner = new JPanel();
+      corner.setBackground(new Color(0xff292929));
+      sp2.setCorner(JScrollPane.LOWER_RIGHT_CORNER, corner);
+      
       tree = new JTree();
+      tree.setBackground(new Color(0x222222));
       ZoomTreeCellRenderer renderer =
         new ZoomTreeCellRenderer(editor.getMode());
+      renderer.setTextNonSelectionColor(new Color(0xD2D2D2));
       tree.setCellRenderer(renderer);
       renderer.setLeafIcon(null);
       renderer.setClosedIcon(null);
@@ -211,7 +216,7 @@ class ShowUsage {
           String usageLabel = count == 1 ? "usage" : "usages";
 
           // Create new DefaultMutableTreeNode for this tab
-          String tabLabel = "<html><font color=#222222>" +
+          String tabLabel = "<html><font color=#D2d2D2>" +
               ps.sketch.getCode(tabIndex).getPrettyName() +
               "</font> <font color=#999999>" + count + " " + usageLabel + "</font></html>";
           DefaultMutableTreeNode tabNode = new DefaultMutableTreeNode(tabLabel);
@@ -312,12 +317,12 @@ class ShowUsageTreeNode {
         .replace("&", "&amp;").replace(">", "&gt;").replace("<", "&lt;");
     String post = line.substring(highlightStopOffset)
         .replace("&", "&amp;").replace(">", "&gt;").replace("<", "&lt;");
-    line = pre + "<font color=#222222><b>" + highlight + "</b></font>" + post;
+    line = pre + "<font color=#CCCCCC><b>" + highlight + "</b></font>" + post;
     line = line.trim();
 
 
-    String text = "<html><font color=#bbbbbb>" +
-        (tabLine + 1) + "</font> <font color=#777777>" + line + "</font></html>";
+    String text = "<html><font color=#CCCCCC>" +
+        (tabLine + 1) + "</font> <font color=#999999>" + line + "</font></html>";
 
     return new ShowUsageTreeNode(in.tabIndex, in.startTabOffset, in.stopTabOffset, text);
   }
