@@ -6,8 +6,9 @@
   header.text.unselected.color = #C6C6C6
   header.tab.arrow.color = #ffffff
 
-  header.gradient.top = #333333
-  header.gradient.bottom = #333333
+  # tab list background
+  header.gradient.top = #3a3c3c
+  header.gradient.bottom = #3a3c3c
 
   # tab colors (modified = that little bar saying unsaved)
   header.tab.unselected.color = #444444
@@ -71,11 +72,12 @@ divider.color = #FF00FF
 divider.dot.diameter = 3
 divider.dot.color = #FF00FF
 
-# "Run"/"Stop" text on hover over the corresponding button
+# Run/Stop text on hover over the corresponding button
 toolbar.rollover.font = processing.sans,plain,12
 toolbar.rollover.color = #D2D2D2
-toolbar.gradient.top = #212121
-toolbar.gradient.bottom = #212121
+# toolbar with the run & stop buttons
+toolbar.gradient.top = #313333
+toolbar.gradient.bottom = #313333
 
 # MODE SELECTOR (java, android, ect)
   mode.title.font = processing.sans,plain,12
@@ -90,9 +92,9 @@ toolbar.gradient.bottom = #212121
 editor.bgcolor = #242424
 # default text color
 editor.fgcolor = #D2D2D2
-
-editor.gradient.top = #333333
-editor.gradient.bottom = #333333
+# vertical bars around the text field
+editor.gradient.top = #313335
+editor.gradient.bottom = #313335
 
 # highlight for the current line
 editor.linehighlight.color=#303030

@@ -40,18 +40,7 @@ import processing.app.contrib.ContributionManager;
 import processing.app.syntax.*;
 import processing.core.*;
 
-import java.awt.Graphics2D;
-import java.awt.Graphics;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.Frame;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.Window;
+import java.awt.*;
 import java.awt.datatransfer.*;
 import java.awt.event.*;
 import java.awt.print.*;
@@ -66,6 +55,7 @@ import java.util.TimerTask;
 import java.util.stream.Collectors;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.event.*;
 import javax.swing.plaf.basic.*;
 import javax.swing.text.*;
@@ -558,6 +548,7 @@ public abstract class Editor extends JFrame implements RunnerListener {
       if (mode == m) {
         item.setSelected(true);
       }
+      Toolkit.dark(modePopup.getPopupMenu());
     }
 
     modePopup.addSeparator();
@@ -721,14 +712,25 @@ public abstract class Editor extends JFrame implements RunnerListener {
     protected void paintComponent(Graphics g) {
       super.paintComponent(g);
       Graphics2D g2d = (Graphics2D) g;
-      g2d.setColor(new Color(0xff444444));
+      g2d.setColor(new Color(0x3e4040));
       g2d.fillRect(0, 0, getWidth(), getHeight()+1);
-      
+    }
+  
+    @Override public JMenu add(JMenu c) {
+      c.setForeground(new Color(0xbebfbf));
+      Toolkit.dark(c.getPopupMenu());
+      return super.add(c);
     }
   }
 
   protected void buildMenuBar() {
     JMenuBar menubar = new DarkJMenuBar();
+    menubar.setBorder(new EmptyBorder(0, 0, 1, 0) {
+      @Override public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+        g.setColor(new Color(0x555555));
+        g.fillRect(x, height-1, width, 1);
+      }
+    });
     fileMenu = buildFileMenu();
     menubar.add(fileMenu);
     menubar.add(buildEditMenu());
@@ -1115,6 +1117,7 @@ public abstract class Editor extends JFrame implements RunnerListener {
           });
           sketchMenu.add(item);
           menuList.add(item);
+          Toolkit.dark(sketchMenu.getPopupMenu());
           Toolkit.setMenuMnemsInside(sketchMenu);
         }
       }
@@ -3305,6 +3308,7 @@ public abstract class Editor extends JFrame implements RunnerListener {
       this.add(referenceItem);
 
       Toolkit.setMenuMnemonics(this);
+      Toolkit.dark(this);
     }
 
     // if no text is selected, disable copy and cut menu items

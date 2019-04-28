@@ -539,6 +539,8 @@ public class EditorHeader extends JComponent {
     }
 
     Toolkit.setMenuMnemonics(menu);
+    Toolkit.dark(menu.getPopupMenu());
+    
   }
 
 
