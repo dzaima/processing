@@ -178,6 +178,7 @@ public abstract class Editor extends JFrame implements RunnerListener {
         public void windowActivated(WindowEvent e) {
           base.handleActivated(Editor.this);
           fileMenu.insert(Recent.getMenu(), 2);
+          Toolkit.dark(fileMenu.getPopupMenu());
           Toolkit.setMenuMnemsInside(fileMenu);
 
           mode.insertImportMenu(sketchMenu);
@@ -189,6 +190,7 @@ public abstract class Editor extends JFrame implements RunnerListener {
           // TODO call handleActivated(null)? or do we run the risk of the
           // deactivate call for old window being called after the activate?
           fileMenu.remove(Recent.getMenu());
+          Toolkit.dark(fileMenu.getPopupMenu());
           mode.removeImportMenu(sketchMenu);
           mode.removeToolbarRecentMenu();
         }

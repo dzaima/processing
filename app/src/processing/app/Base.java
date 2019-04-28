@@ -1526,6 +1526,7 @@ public class Base {
         editor.setVisible(false);
         editor.dispose();
         defaultFileMenu.insert(Recent.getMenu(), 2);
+        Toolkit.dark(defaultFileMenu.getPopupMenu());
         activeEditor = null;
         editors.remove(editor);
       }
