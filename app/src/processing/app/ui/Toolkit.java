@@ -87,7 +87,7 @@ public class Toolkit {
 
   /** Command-W on Mac OS X, Ctrl-W on Windows and Linux */
   static public final KeyStroke WINDOW_CLOSE_KEYSTROKE =
-    KeyStroke.getKeyStroke('W', SHORTCUT_KEY_MASK);
+    KeyStroke.getKeyStroke('W', SHORTCUT_SHIFT_KEY_MASK);
 
   static final String BAD_KEYSTROKE =
     "'%s' is not understood, please re-read the Java reference for KeyStroke";

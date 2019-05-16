@@ -2926,8 +2926,10 @@ public abstract class Editor extends JFrame implements RunnerListener {
 
       // Make sure something is printed into the console
       // Status bar is volatile
-      System.err.println(re.getMessage());
-
+      // System.err.println(re.getMessage());
+      re.showStackTrace();
+      re.printStackTrace();
+      
       // Move the cursor to the line before updating the status bar, otherwise
       // status message might get hidden by a potential message caused by moving
       // the cursor to a line with warning in it
