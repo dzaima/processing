@@ -162,7 +162,9 @@ public class Sketch {
       String extension = extensions.get(i);
       SketchCode sketchCode = new SketchCode(new File(folder, filename), extension);
       code[i] = sketchCode;
-      openTabs.add(sketchCode);
+      if (codeCount < 10) { // if there are many tabs, start out with only the main
+        openTabs.add(sketchCode);
+      }
     }
 
     // move the main class to the first tab
@@ -176,7 +178,8 @@ public class Sketch {
         break;
       }
     }
-    for (int i = 1; i < getTabCount(); i++) {
+    if (!openTabs.contains(code[0])) openTabs.add(0, code[0]);
+    else for (int i = 1; i < getTabCount(); i++) {
       if (getTab(i).getFile().equals(primaryFile)) {
         SketchCode temp = getTab(0);
         openTabs.set(0, getTab(i));
@@ -251,7 +254,7 @@ public class Sketch {
     } else {
       replaceCode(new SketchCode(new File(folder, filename), ext));
     }
-    sortCode();
+    // sortCode(); no
   }
 
 
@@ -630,8 +633,8 @@ public class Sketch {
       insertCode(newCode);
     }
 
-    // sort the entries
-    sortCode();
+    // don't sort the entries
+    // sortCode();
 
     // set the new guy as current
     setCurrentCode(newName);
@@ -1413,7 +1416,7 @@ public class Sketch {
 
       } else {
         insertCode(newCode);
-        sortCode();
+        // sortCode();
       }
       setCurrentCode(filename);
       editor.repaintHeader();
@@ -1445,14 +1448,16 @@ public class Sketch {
   public void setCurrentCode(int which) {
     if (which < 0 || which >= getCodeCount()) return;
   
-    SketchCode tab = getCode(which);
+    setCurrentCode(code[which]);
+  }
+  public void setCurrentCode(SketchCode tab) {
     if (!openTabs.contains(tab)) {
       openTabs.add(tab);
-    
+      
       editor.rebuildHeader();
     }
     
-    setCurrentTab(openTabs.indexOf(code[which]));
+    setCurrentTab(openTabs.indexOf(tab));
   }
   public void setCurrentTab(int which) {
 //    // for the tab sizing

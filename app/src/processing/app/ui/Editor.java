@@ -83,7 +83,9 @@ public abstract class Editor extends JFrame implements RunnerListener {
     "                                                                     " +
     "                                                                     " +
     "                                                                     ";
-
+  
+  
+  
   /**
    * true if this file has not yet been given a name by the user
    */
@@ -140,6 +142,7 @@ public abstract class Editor extends JFrame implements RunnerListener {
   private final Stack<Integer> caretRedoStack = new Stack<>();
 
   private FindReplace find;
+  private Search search;
   JMenu toolsMenu;
   JMenu modePopup;
 
@@ -993,22 +996,32 @@ public abstract class Editor extends JFrame implements RunnerListener {
     menu.add(item);
 
     menu.addSeparator();
-
+  
     item = Toolkit.newJMenuItem(Language.text("menu.edit.find"), 'F');
     item.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
-          if (find == null) {
-            find = new FindReplace(Editor.this);
-          }
-          // https://github.com/processing/processing/issues/3457
-          String selection = getSelectedText();
-          if (selection != null && selection.length() != 0 &&
-              !selection.contains("\n")) {
-            find.setFindText(selection);
-          }
-          find.setVisible(true);
+      public void actionPerformed(ActionEvent e) {
+        if (find == null) {
+          find = new FindReplace(Editor.this);
         }
-      });
+        // https://github.com/processing/processing/issues/3457
+        String selection = getSelectedText();
+        if (selection != null && selection.length() != 0 &&
+          !selection.contains("\n")) {
+          find.setFindText(selection);
+        }
+        find.setVisible(true);
+      }
+    });
+    menu.add(item);
+    
+    
+    item = Toolkit.newJMenuItem(Language.text("menu.edit.search"), 'G');
+    item.addActionListener(e -> {
+      if (search == null) {
+        search = new Search(Editor.this);
+      }
+      search.setVisible(true);
+    });
     menu.add(item);
 
     UpdatableAction action;

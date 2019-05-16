@@ -1,11 +1,14 @@
 package processing.app.ui;
 
 import javax.swing.*;
+import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
 
 public class DarkScrollBarUI extends BasicScrollBarUI {
   public DarkScrollBarUI() { }
+  
+  
   @Override
   protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
     Graphics2D g2g = (Graphics2D) g;

@@ -66,7 +66,7 @@ public class FindReplace extends JFrame {
 
 
   public FindReplace(Editor editor) {
-    super(Language.text("find"));
+    super(Language.text("search"));
     this.editor = editor;
 
     Container pain = getContentPane();
