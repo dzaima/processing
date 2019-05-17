@@ -29,6 +29,7 @@ import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.text.*;
 import java.awt.*;
+import java.awt.Dimension;
 import java.awt.event.*;
 import java.util.ArrayList;
 
@@ -92,7 +93,7 @@ public class Search extends JFrame {
       public void  insertUpdate(DocumentEvent e) { call(); }
       
       private void call() {
-        updateList(searchField.getText());
+        updateList();
       }
     });
     searchField.addActionListener(e -> {
@@ -154,63 +155,78 @@ public class Search extends JFrame {
 
 
     setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-    addWindowListener(new WindowAdapter() {
-      public void windowClosing(WindowEvent e) {
-        handleClose();
-      }
-    });
     
     Toolkit.registerWindowCloseKeys(getRootPane(), actionEvent -> handleClose());
     Toolkit.setIcon(this);
 
-    // hack to to get first field to focus properly on osx
     addWindowListener(new WindowAdapter() {
+      // hack to to get first field to focus properly on osx
       public void windowActivated(WindowEvent e) {
         searchField.requestFocusInWindow();
         searchField.selectAll();
+      }
+      @Override public void windowDeactivated(WindowEvent e) {
+        System.out.println(2);handleClose();
+      }
+      @Override public void windowClosing(WindowEvent e) {
+        System.out.println(3);handleClose();
       }
     });
     pack();
     setResizable(true);
     setLocationRelativeTo(null);
     
-    updateList("");
+    updateList();
   }
   
-  ArrayList<SearchResult> results;
-  private void updateList(String search) {
-    search = search.toLowerCase();
+  private ArrayList<SearchResult> results;
+  private void updateList() {
     results = new ArrayList<>();
     for (SketchCode c : editor.sketch.getCode()) {
-      if (c.getFileName().toLowerCase().contains(search)) results.add(new SearchResult(c));
+      if (match(c.getFileName())) results.add(new FileSearchResult(c));
     }
+    
+    editor.extraSearch(this);
+    
+    reModel();
+  }
+  
+  private void reModel() {
     list.setModel(new AbstractListModel<SearchResult>() {
       @Override
       public int getSize() {
         return results.size();
       }
-
+    
       @Override
       public SearchResult getElementAt(int i) {
         return results.get(i);
       }
     });
+  
     if (results.size() > 0) list.setSelectedIndex(0);
   }
   
-  class SearchResult {
+  public String getText() {
+    return searchField.getText().toLowerCase();
+  }
   
+  public void add(ArrayList<SearchResult> names) {
+    results.addAll(names);
+    EventQueue.invokeLater(this::reModel); // idk if invokeLater is needed but i did it so
+  }
+  
+  class FileSearchResult extends SearchResult {
     private final SketchCode tab;
-  
-    public SearchResult(SketchCode tab) {
+    
+    FileSearchResult(SketchCode tab) {
+      super(Search.this);
       this.tab = tab;
     }
-  
     @Override public String toString() {
-      return tab.getFileName();
+      return tab.getPrettyName();
     }
-  
-    public void select() {
+    @Override public void select() {
       handleClose();
       editor.sketch.setCurrentCode(tab);
     }
@@ -295,14 +311,9 @@ public class Search extends JFrame {
   }
 
 
-
-
-
-  /**
-   * Returns true if find next/previous will work, for graying-
-   * out of menu items.
-   */
-  public boolean canFindNext() {
-    return searchField.getText().length() != 0;
+  public boolean match(String str) {
+    return str.toLowerCase().contains(getText());
   }
+
+
 }

@@ -16,6 +16,7 @@ import javax.swing.event.*;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 
+import org.eclipse.jdt.core.dom.SimpleName;
 import processing.core.PApplet;
 import processing.data.StringList;
 import processing.app.*;
@@ -1816,7 +1817,6 @@ public class JavaEditor extends Editor {
    * Returns a list of AvailableContributions of those libraries that the user
    * wants imported, but that are not installed.
    *
-   * @param importHeaders
    */
   private List<AvailableContribution> getNotInstalledAvailableLibs(ArrayList<String> importHeadersList) {
     Map<String, Contribution> importMap =
@@ -2811,5 +2811,11 @@ public class JavaEditor extends Editor {
       }
     }
     return count;
+  }
+  
+  
+  
+  public void extraSearch(Search search) {
+    pdex.getSearcher().search(search, search::add);
   }
 }

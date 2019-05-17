@@ -444,8 +444,10 @@ public abstract class Editor extends JFrame implements RunnerListener {
   public EditorState getEditorState() {
     return state;
   }
-
-
+  
+  public void extraSearch(Search search) { } // by default don't require anything
+  
+  
   /**
    * Handles files dragged & dropped from the desktop and into the editor
    * window. Dragging files into the editor window is the same as using

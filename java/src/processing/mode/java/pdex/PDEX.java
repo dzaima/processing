@@ -19,6 +19,7 @@ public class PDEX {
   private ShowUsage usage;
   private Rename rename;
   private DebugTree debugTree;
+  private Searcher searcher;
 
   private PreprocessingService pps;
 
@@ -29,8 +30,9 @@ public class PDEX {
     this.enabled = !editor.hasJavaTabs();
 
     errorChecker = new ErrorChecker(editor, pps);
-
+  
     usage = new ShowUsage(editor, pps);
+    searcher = new Searcher(editor, pps);
     inspect = new InspectMode(editor, pps, usage);
     rename = new Rename(editor, pps, usage);
 
@@ -103,5 +105,9 @@ public class PDEX {
 
   public void documentChanged(Document newDoc) {
     addDocumentListener(newDoc);
+  }
+  
+  public Searcher getSearcher() {
+    return searcher;
   }
 }
