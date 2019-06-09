@@ -2720,10 +2720,10 @@ public class JavaEditor extends Editor {
     int numOfInts = howManyInts(handles);
     int numOfFloats = howManyFloats(handles);
     if (numOfInts > 0) {
-      header += "int[] tweakmode_int = new int["+numOfInts+"];\n";
+      header += "static int[] tweakmode_int = new int["+numOfInts+"];\n";
     }
     if (numOfFloats > 0) {
-      header += "float[] tweakmode_float = new float["+numOfFloats+"];\n\n";
+      header += "static float[] tweakmode_float = new float["+numOfFloats+"];\n\n";
     }
 
     // add the server code that will receive the value change messages
@@ -2735,7 +2735,8 @@ public class JavaEditor extends Editor {
     for (List<Handle> list : handles) {
       //for (Handle n : handles[i]) {
       for (Handle n : list) {
-        header += "  " + n.name + " = " + n.strValue + ";\n";
+        if (n.type.equals("float")) header += "  " + n.name + " = (float) " + n.strValue + ";\n";
+        else header += "  " + n.name + " = " + n.strValue + ";\n";
       }
     }
     header += "}\n\n";

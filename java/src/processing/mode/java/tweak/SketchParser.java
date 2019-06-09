@@ -157,8 +157,8 @@ public class SketchParser {
           continue;
         }
 
-        // remove any 'f' after the number
-        if (c.charAt(end) == 'f') {
+        // remove any 'f' or 'd' after the number (let's hope there aren't too huge double constants)
+        if (c.charAt(end) == 'f' || c.charAt(end) == 'd') {
           forceFloat = true;
           end++;
         }
